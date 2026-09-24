@@ -933,7 +933,7 @@ struct CreateServerView: View {
                     guard let dict = json as? [String: Any],
                           let versionMap = dict["versions"] as? [String: [String]]
                     else {
-                        finishOnMain([], "Failed to parse Paper version list")
+                        finishOnMain([], json)
                         return
                     }
                     let all = versionMap.values.flatMap { $0 }
