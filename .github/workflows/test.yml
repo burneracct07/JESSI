@@ -6,6 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      
+      - name: Grab source file
+        run: curl -L "https://github.com{{ github.repository }}/releases/download/source/source.json"
+      
       - run: |
           MARKETING_VERSION=$(grep -m1 'MARKETING_VERSION =' JESSI.xcodeproj/project.pbxproj \
             | sed 's/.*MARKETING_VERSION = \(.*\);/\1/')
