@@ -15,3 +15,6 @@ jobs:
 
           echo "MARKETING_VERSION=$MARKETING_VERSION" >> "$GITHUB_ENV"
           echo "BUILD_NUMBER=$BUILD_NUMBER" >> "$GITHUB_ENV"
+      - run: |
+          echo "Version: $MARKETING_VERSION"
+          echo "Build: $BUILD_NUMBER"
