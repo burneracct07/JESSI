@@ -10,6 +10,9 @@ jobs:
       - name: Grab source file
         run: curl -L "https://github.com/${{ github.repository }}/releases/download/source/source.json"
       
+      - name: Install jq
+        run: apt install jq
+
       - run: |
           MARKETING_VERSION=$(grep -m1 'MARKETING_VERSION =' JESSI.xcodeproj/project.pbxproj \
             | sed 's/.*MARKETING_VERSION = \(.*\);/\1/')
