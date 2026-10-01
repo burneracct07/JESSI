@@ -12,6 +12,9 @@ jobs:
 
           BUILD_NUMBER=$(grep -m1 'CURRENT_PROJECT_VERSION =' JESSI.xcodeproj/project.pbxproj \
             | sed 's/.*CURRENT_PROJECT_VERSION = \(.*\);/\1/')
+            
+          echo "MARKETING_VERSION=$MARKETING_VERSION" >> "$GITHUB_ENV"
+          echo "BUILD_NUMBER=$BUILD_NUMBER" >> "$GITHUB_ENV"
       - run: |
           echo "Version: $MARKETING_VERSION"
           echo "Build: $BUILD_NUMBER"
