@@ -1,7 +1,9 @@
 name: Update JESSI Source
+run-name: Update JESSI Source
 on:
   workflow_dispatch:
-  release: published
+  release:
+    types: published
 jobs:
   test-command:
     runs-on: ubuntu-latest
