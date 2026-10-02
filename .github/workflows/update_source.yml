@@ -1,7 +1,6 @@
 name: Update JESSI Source
 run-name: Update JESSI Source
 on:
-  workflow_dispatch:
   release:
     types: [published]
 jobs:
