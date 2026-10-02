@@ -8,4 +8,4 @@ jobs:
       - uses: actions/checkout@v6
       
       - name: Do everything lol
-        run: curl -L https://github.com/${{ github.repository }}/releases/download/source/source.json | jq --arg version $(grep -m1 'MARKETING_VERSION =' JESSI.xcodeproj/project.pbjproj | sed 's/.*MARKETING_VERSION = \(.*\);/\1/') --arg date $(date -I) --arg size $(curl -L https://github.com/${{ github.repository }}/releases/latest/download/JESSI.ipa | wc -c) '.apps[].versions[].version = $version | .apps.[].versions[].date = $date | .apps[].versions[].size = ($size | tonumber)'
+        run: curl -L https://github.com/${{ github.repository }}/releases/download/source/source.json | jq --arg version $(grep -m1 'MARKETING_VERSION =' JESSI.xcodeproj/project.pbxproj | sed 's/.*MARKETING_VERSION = \(.*\);/\1/') --arg date $(date -I) --arg size $(curl -L https://github.com/${{ github.repository }}/releases/latest/download/JESSI.ipa | wc -c) '.apps[].versions[].version = $version | .apps.[].versions[].date = $date | .apps[].versions[].size = ($size | tonumber)'
