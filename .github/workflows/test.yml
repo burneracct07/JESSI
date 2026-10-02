@@ -8,4 +8,12 @@ jobs:
       - uses: actions/checkout@v6
       
       - name: Do everything lol
-        run: curl -L -s https://github.com/${{ github.repository }}/releases/download/source/source.json | jq --arg version $(grep -m1 'MARKETING_VERSION =' JESSI.xcodeproj/project.pbxproj | sed 's/.*MARKETING_VERSION = \(.*\);/\1/') --arg date $(date -I) --arg size $(curl -L -s https://github.com/${{ github.repository }}/releases/latest/download/JESSI.ipa | wc -c) '.apps[].versions[].version = $version | .apps.[].versions[].date = $date | .apps[].versions[].size = ($size | tonumber)'
+        run: curl -L -s https://github.com/${{ github.repository }}/releases/download/source/source.json | jq --arg version $(grep -m1 'MARKETING_VERSION =' JESSI.xcodeproj/project.pbxproj | sed 's/.*MARKETING_VERSION = \(.*\);/\1/') --arg date $(date -I) --arg size $(curl -L -s https://github.com/${{ github.repository }}/releases/latest/download/JESSI.ipa | wc -c) '.apps[].versions[].version = $version | .apps.[].versions[].date = $date | .apps[].versions[].size = ($size | tonumber)' > source.json
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1.21.0
+        with:
+          allow-updates: true
+          artifacts: "source.json"
+          artifactContentType: JSON
+          tag: "source"
