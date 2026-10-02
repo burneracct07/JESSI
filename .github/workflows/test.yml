@@ -1,5 +1,4 @@
-name: Test-workflow-stuff
-run-name: Actions testing
+name: Update JESSI Source
 on: workflow_dispatch
 jobs:
   test-command:
@@ -9,10 +8,10 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       
-      - name: Make all modifications lol
+      - name: Make all source modifications in one line lol
         run: curl -L -s https://github.com/${{ github.repository }}/releases/download/source/source.json | jq --arg version $(grep -m1 'MARKETING_VERSION =' JESSI.xcodeproj/project.pbxproj | sed 's/.*MARKETING_VERSION = \(.*\);/\1/') --arg date $(date -I) --arg size $(curl -L -s https://github.com/${{ github.repository }}/releases/latest/download/JESSI.ipa | wc -c) '.apps[].versions[].version = $version | .apps.[].versions[].date = $date | .apps[].versions[].size = ($size | tonumber)' > source.json
 
-      - name: Create Release
+      - name: Update source release
         uses: ncipollo/release-action@v1.21.0
         with:
           allowUpdates: true
