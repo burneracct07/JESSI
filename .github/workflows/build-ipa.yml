@@ -25,6 +25,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: update version displayed in settings
+        run: sed -i '' 's/"-stable"/"-nightly+${{ github.sha }}"/g' JESSI/SwiftUI/SettingsView.swift
+
       - name: select xcode
         uses: maxim-lobanov/setup-xcode@v1
         with:
